@@ -1,5 +1,5 @@
 {
-  "name": "bytemd",
+  "name": "@chertpong/bytemd",
   "version": "1.20.1",
   "description": "Hackable Markdown Editor and Viewer",
   "keywords": [
