@@ -267,7 +267,7 @@ export function getBuiltinActions(
             async click(ctx) {
               const fileList = await selectFiles({
                 accept: 'image/*',
-                multiple: true,
+                multiple: false,
               })
 
               if (fileList?.length) {

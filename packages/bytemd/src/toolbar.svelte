@@ -76,26 +76,6 @@
       active: previewActive,
       hidden: !split,
     },
-    {
-      title: fullscreen ? locale.exitFullscreen : locale.fullscreen,
-      icon: fullscreen ? icons.OffScreen : icons.FullScreen,
-      handler: {
-        type: 'action',
-        click() {
-          dispatch('click', 'fullscreen')
-        },
-      },
-    },
-    {
-      title: locale.source,
-      icon: icons.GithubOne,
-      handler: {
-        type: 'action',
-        click() {
-          window.open('https://github.com/bytedance/bytemd')
-        },
-      },
-    },
     ...rightAfferentActions,
   ] as RightAction[]
 
@@ -268,6 +248,16 @@
       >
         {locale.preview}
       </div>
+      {#each actions as item, index}
+        {#if item.handler}
+          <div
+            class={['bytemd-toolbar-icon', tippyClass].join(' ')}
+            bytemd-tippy-path={index}
+          >
+            {@html item.icon}
+          </div>
+        {/if}
+      {/each}
     {/if}
   </div>
 

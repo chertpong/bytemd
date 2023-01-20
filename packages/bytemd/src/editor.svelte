@@ -38,6 +38,7 @@
   export let uploadImages: Props['uploadImages'] = undefined
   export let overridePreview: Props['overridePreview'] = undefined
   export let maxLength: NonNullable<Props['maxLength']> = Infinity
+  export let enableFullScreenMenu = false;
 
   $: mergedLocale = { ...en, ...locale }
   const dispatch = createEventDispatcher<{ change: { value: string } }>()
