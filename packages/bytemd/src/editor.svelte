@@ -370,6 +370,14 @@
           editor && editor.focus()
         })
       }
+
+      if (v === 'write') {
+        tick().then(() => {
+          // https://github.com/bytedance/bytemd/issues/232
+          // https://github.com/codemirror/codemirror5/issues/3270
+          editor && editor.setSize(null, null)
+        })
+      }
     }}
     on:click={(e) => {
       switch (e.detail) {
@@ -388,7 +396,7 @@
   <div class="bytemd-body">
     <div class="bytemd-editor" style={styles.edit} bind:this={editorEl} />
     <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
-      {#if !overridePreview}
+      {#if !overridePreview && (split || activeTab === 'preview')}
         <Viewer
           value={debouncedValue}
           {plugins}
@@ -406,6 +414,11 @@
         class="bytemd-sidebar-close"
         on:click={() => {
           sidebar = false
+        }}
+        on:keydown|self={(e) => {
+          if (['Enter', 'Space'].includes(e.code)) {
+            sidebar = false
+          }
         }}
       >
         {@html icons.Close}
